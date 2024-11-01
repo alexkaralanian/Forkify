@@ -4,7 +4,7 @@ import 'regenerator-runtime/runtime';
 import { state, loadRecipe } from './model.js';
 import recipeView from './views/recipeView.js';
 
-const controlRecipes = async () => {
+export const controlRecipes = async () => {
   try {
     const id = window.location.hash.slice(1);
     if (!id) return;
@@ -17,6 +17,11 @@ const controlRecipes = async () => {
   }
 };
 
-['hashchange', 'load'].forEach(evt =>
-  window.addEventListener(evt, controlRecipes)
-);
+// init function runs as soon as program loads
+const init = function () {
+  // here we subscribe to the events by passing in the controlRecipes function to the event handler(s)
+  // we immediately run addHanldeRender, which is listening /for events in the view
+  recipeView.addHandlerRender(controlRecipes);
+};
+
+init();

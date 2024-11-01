@@ -17,6 +17,15 @@ class RecipeView {
     this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 
+  //  here we are listening for events.
+  //  we publish these events by recieving the subscriber function
+  //  the controller subscribes by passin in the handler function we want to call from the cntroller.
+  addHandlerRender(handler) {
+    ['hashchange', 'load'].forEach(evt =>
+      window.addEventListener(evt, handler)
+    );
+  }
+
   render(data) {
     this.#data = data;
     const markup = this.#generateMarkup();

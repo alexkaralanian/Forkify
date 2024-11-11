@@ -1,4 +1,4 @@
-import 'core-js/stable';
+import 'core-js/actual';
 import 'regenerator-runtime/runtime';
 
 import { state, loadRecipe } from './model.js';
